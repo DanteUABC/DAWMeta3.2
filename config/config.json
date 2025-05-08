@@ -1,0 +1,9 @@
+{
+    "development": {
+        "username": "backenduser",
+        "password": "12345678",
+        "database": "superuabc",
+        "host": "localhost",
+        "dialect": "mysql"
+    }
+}
