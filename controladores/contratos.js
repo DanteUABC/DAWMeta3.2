@@ -29,8 +29,9 @@ exports.getContractById = async (req, res) => {
 
 exports.createContract = async (req, res) => {
   try {
-    const { docenteId, asignaturaId } = req.body;
+    const { id, docenteId, asignaturaId } = req.body;
     const nuevoContrato = await Contrato.create({
+      id,
       docenteId,
       asignaturaId
     });
@@ -45,13 +46,13 @@ exports.createContract = async (req, res) => {
 
 exports.updateContract = async (req, res) => {
   try {
-    const { docenteId, asignaturaId } = req.body;
+    const { id, docenteId, asignaturaId } = req.body;
     const contrato = await Contrato.findByPk(req.params.id);
     if (!contrato) {
       return res.status(404).json({ message: "Contrato no encontrado" });
     }
 
-    await contrato.update({ docenteId, asignaturaId });
+    await contrato.update({ id, docenteId, asignaturaId });
     res.json(contrato);
   } catch (error) {
     res.status(500).json({
