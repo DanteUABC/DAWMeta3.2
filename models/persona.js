@@ -22,6 +22,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Persona.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: false,
+      allowNull: false
+    },
     nombre: DataTypes.STRING,
     email: DataTypes.STRING
   }, {
