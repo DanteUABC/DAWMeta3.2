@@ -29,8 +29,9 @@ exports.getSubjectById = async (req, res) => {
 
 exports.createSubject = async (req, res) => {
   try {
-    const { clave, nombre, creditos } = req.body;
+    const { id, clave, nombre, creditos } = req.body;
     const nuevaAsignatura = await Asignatura.create({
+      id,
       clave,
       nombre,
       creditos
@@ -46,13 +47,13 @@ exports.createSubject = async (req, res) => {
 
 exports.updateSubject = async (req, res) => {
   try {
-    const { clave, nombre, creditos } = req.body;
+    const { id, clave, nombre, creditos } = req.body;
     const asignatura = await Asignatura.findByPk(req.params.id);
     if (!asignatura) {
       return res.status(404).json({ message: "Asignatura no encontrada" });
     }
 
-    await asignatura.update({ clave, nombre, creditos });
+    await asignatura.update({ id, clave, nombre, creditos });
     res.json(asignatura);
   } catch (error) {
     res.status(500).json({
