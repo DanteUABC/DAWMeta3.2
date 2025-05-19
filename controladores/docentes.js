@@ -29,8 +29,9 @@ exports.getTeacherById = async (req, res) => {
 
 exports.createTeacher = async (req, res) => {
   try {
-    const { categoriaEmpleadoId, personaId, numEmpleado } = req.body;
+    const { id, categoriaEmpleadoId, personaId, numEmpleado } = req.body;
     const nuevoDocente = await Docente.create({
+      id,
       categoriaEmpleadoId,
       personaId,
       numEmpleado
@@ -46,13 +47,13 @@ exports.createTeacher = async (req, res) => {
 
 exports.updateTeacher = async (req, res) => {
   try {
-    const { categoriaEmpleadoId, personaId } = req.body;
+    const { id, categoriaEmpleadoId, personaId } = req.body;
     const docente = await Docente.findByPk(req.params.id);
     if (!docente) {
       return res.status(404).json({ message: "Docente no encontrado" });
     }
 
-    await docente.update({ categoriaEmpleadoId, personaId });
+    await docente.update({ id, categoriaEmpleadoId, personaId });
     res.json(docente);
   } catch (error) {
     res.status(500).json({
