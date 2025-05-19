@@ -29,11 +29,14 @@ exports.getStudentById = async (req, res) => {
 
 exports.createStudent = async (req, res) => {
   try {
-    const { matricula, personaId } = req.body;
+    const { id, matricula, personaId } = req.body;
+
     const nuevoEstudiante = await Estudiante.create({
+      id,
       matricula,
       personaId
     });
+
     res.status(201).json(nuevoEstudiante);
   } catch (error) {
     res.status(500).json({
@@ -42,16 +45,15 @@ exports.createStudent = async (req, res) => {
     });
   }
 };
-
 exports.updateStudent = async (req, res) => {
   try {
-    const { matricula, personaId } = req.body;
+    const { id, matricula, personaId } = req.body;
     const estudiante = await Estudiante.findByPk(req.params.id);
     if (!estudiante) {
       return res.status(404).json({ message: "Estudiante no encontrado" });
     }
 
-    await estudiante.update({ matricula, personaId });
+    await estudiante.update({ id, matricula, personaId });
     res.json(estudiante);
   } catch (error) {
     res.status(500).json({
