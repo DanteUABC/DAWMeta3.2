@@ -27,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true // si querés que Sequelize lo maneje automáticamente
+      autoIncrement: false,
+      allowNull: false
     },
     matricula: {
       type: DataTypes.INTEGER,
