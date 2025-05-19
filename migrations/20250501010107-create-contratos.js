@@ -6,7 +6,6 @@ module.exports = {
     await queryInterface.createTable('Contratos', {
         id: {
             allowNull: false,
-            autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
           },
