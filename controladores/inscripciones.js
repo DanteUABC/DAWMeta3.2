@@ -29,8 +29,9 @@ exports.getInscriptionById = async (req, res) => {
 
 exports.createInscription = async (req, res) => {
   try {
-    const { semestre, calificacion } = req.body;
+    const { id, semestre, calificacion } = req.body;
     const nuevaInscripcion = await Inscripcion.create({
+      id,
       semestre,
       calificacion
     });
@@ -45,13 +46,13 @@ exports.createInscription = async (req, res) => {
 
 exports.updateInscription = async (req, res) => {
   try {
-    const { semestre, calificacion } = req.body;
+    const { id, semestre, calificacion } = req.body;
     const inscripcion = await Inscripcion.findByPk(req.params.id);
     if (!inscripcion) {
       return res.status(404).json({ message: "Inscripción no encontrada" });
     }
 
-    await inscripcion.update({ semestre, calificacion });
+    await inscripcion.update({ id, semestre, calificacion });
     res.json(inscripcion);
   } catch (error) {
     res.status(500).json({
