@@ -15,13 +15,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Contrato.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: false,
+      allowNull: false
+    },
     docenteId: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      allowNull: false
     },
     asignaturaId: {
       type: DataTypes.INTEGER,
-      primaryKey: true
+      allowNull: false
     }
   }, {
     sequelize,
