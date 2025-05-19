@@ -15,13 +15,19 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Inscripcion.init({
-    estudianteId: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+      autoIncrement: false,
+      allowNull: false
+    },
+    estudianteId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     asignaturaId: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
+      allowNull: false
     },
     semestre: DataTypes.INTEGER,
     calificacion: DataTypes.FLOAT
