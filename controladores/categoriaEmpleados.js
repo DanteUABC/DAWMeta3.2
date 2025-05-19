@@ -29,8 +29,9 @@ exports.getCategoryById = async (req, res) => {
 
 exports.createCategory = async (req, res) => {
   try {
-    const { clave, nombre } = req.body;
+    const { id, clave, nombre } = req.body;
     const nuevoCategoriaEmpleado = await CategoriaEmpleado.create({
+      id,
       clave,
       nombre
     });
@@ -45,13 +46,13 @@ exports.createCategory = async (req, res) => {
 
 exports.updateCategory = async (req, res) => {
   try {
-    const { clave, nombre } = req.body;
+    const { id, clave, nombre } = req.body;
     const categoriaEmpleado = await CategoriaEmpleado.findByPk(req.params.id);
     if (!categoriaEmpleado) {
       return res.status(404).json({ message: "Categoria de empleado no encontrado" });
     }
 
-    await categoriaEmpleado.update({ clave, nombre });
+    await categoriaEmpleado.update({ id, clave, nombre });
     res.json(categoriaEmpleado);
   } catch (error) {
     res.status(500).json({
